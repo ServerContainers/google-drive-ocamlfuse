@@ -14,6 +14,8 @@ It's loosely based on https://github.com/Patricol/dockerfiles-public/tree/master
 
 ## Changelogs
 
+* 2020-11-20
+    * removed unsupported arm 32 bit builds
 * 2020-11-18
     * initial creation
     * up-to-date build
