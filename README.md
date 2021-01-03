@@ -14,6 +14,8 @@ It's loosely based on https://github.com/Patricol/dockerfiles-public/tree/master
 
 ## Changelogs
 
+* 2021-01-03
+    * added bash to fix scripts and startup
 * 2020-11-20
     * removed unsupported arm 32 bit builds
 * 2020-11-18

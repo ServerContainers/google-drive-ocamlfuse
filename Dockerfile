@@ -2,7 +2,7 @@ FROM alpine:latest as builder
 
 ENV OPAMYES=true
 
-RUN apk --no-cache add opam m4 git make \
+RUN apk --no-cache add bash opam m4 git make \
                        libc-dev ocaml-compiler-libs ocaml-ocamldoc \
 \
 && opam init  --disable-sandboxing  -y \
