@@ -13,8 +13,10 @@ services:
       - mknod
       - sys_admin
     environment:
-      PUID: 1000
-      PGID: 1000
+      ACCOUNT_foo: 1001
+
+      PUID: 1001
+      PGID: 1001
     volumes:
       - /mnt/gdrive:/data:shared
       - ./config:/root/.gdfuse

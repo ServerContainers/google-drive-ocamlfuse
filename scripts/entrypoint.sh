@@ -19,6 +19,38 @@ if [ ! -f "$INITALIZED" ]; then
   chmod a+x /container/scripts/*
   cp /container/scripts/* /bin/
 
+
+  ##
+  # GROUPS
+  ##
+  for I_CONF in $(env | grep '^GROUP_')
+  do
+    GROUP_NAME=$(echo "$I_CONF" | sed 's/^GROUP_//g' | sed 's/=.*//g')
+    GROUP_ID=$(echo "$I_CONF" | sed 's/^[^=]*=//g')
+    echo ">> CONTAINER: GROUP: adding group $GROUP_NAME with GID: $GROUP_ID"
+    addgroup -g "$GROUP_ID" "$GROUP_NAME"
+  done
+
+  ##
+  # USER ACCOUNTS
+  ##
+  for I_ACCOUNT in $(env | grep '^ACCOUNT_')
+  do
+    ACCOUNT_NAME=$(echo "$I_ACCOUNT" | cut -d'=' -f1 | sed 's/ACCOUNT_//g' | tr '[:upper:]' '[:lower:]')
+    ACCOUNT_UID=$(echo "$I_ACCOUNT" | sed 's/^[^=]*=//g')
+
+    echo ">> CONTAINER: ACCOUNT: adding account: $ACCOUNT_NAME with UID: $ACCOUNT_UID"
+    adduser -D -H -u "$ACCOUNT_UID" -s /bin/false "$ACCOUNT_NAME"
+    
+    # add user to groups...
+    ACCOUNT_GROUPS=$(env | grep '^GROUPS_'"$ACCOUNT_NAME" | sed 's/^[^=]*=//g')
+    for GRP in $(echo "$ACCOUNT_GROUPS" | tr ',' '\n' | grep .); do
+      echo ">> CONTAINER: ACCOUNT: adding account: $ACCOUNT_NAME to group: $GRP"
+      addgroup "$ACCOUNT_NAME" "$GRP"
+    done
+  done
+
+
   touch "$INITALIZED"
 else
   echo ">> CONTAINER: already initialized - direct start"
@@ -35,4 +67,5 @@ echo ">> CONTAINER: Run Auth Reader..."
 /bin/read-auth.sh &
 
 echo ">> CONTAINER: Run Mounting App...."
+google-drive-ocamlfuse -version
 exec google-drive-ocamlfuse /data -f -o uid=${PUID},gid=${PGID},noatime${MOUNT_OPTS}

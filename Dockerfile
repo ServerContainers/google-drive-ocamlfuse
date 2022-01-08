@@ -1,4 +1,4 @@
-FROM alpine:latest as builder
+FROM alpine as builder
 
 ENV OPAMYES=true
 
@@ -12,7 +12,7 @@ RUN apk --no-cache add opam m4 git make \
 && opam depext -y google-drive-ocamlfuse \
 && opam install -y google-drive-ocamlfuse
 
-FROM alpine:latest
+FROM alpine
 
 COPY --from=builder /root/.opam/default/bin/google-drive-ocamlfuse /bin/google-drive-ocamlfuse
 
