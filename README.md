@@ -108,7 +108,7 @@ In order to use it properly with samba, you can enforce user and group `root` or
 #### docker env for: servercontainers/samba
 
 ```
-SAMBA_VOLUME_CONFIG_gdrive: "[GDrive]; path = /shares/gdrive; valid users = alice; guest ok = no; read only = no; browseable = yes; force user = root; force group = root; admin users = root"
+SAMBA_VOLUME_CONFIG_gdrive: "[GDrive]; path = /shares/gdrive; valid users = alice; guest ok = no; read only = no; browseable = yes; force user = root; force group = root"
 ```
 
 #### plain stanza for: smb.conf
@@ -122,5 +122,4 @@ SAMBA_VOLUME_CONFIG_gdrive: "[GDrive]; path = /shares/gdrive; valid users = alic
  browseable = yes
  force user = root
  force group = root
- admin users = root
 ```
