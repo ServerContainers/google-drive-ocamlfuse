@@ -24,6 +24,9 @@ This way I can easily find and fix bugs without affecting any users. It will res
 
 ## Changelogs
 
+* 2022-12-27
+    * fixed broken build (opam depext etc.)
+    * fixed url display problem in custom `xdg-open`
 * 2022-01-08
     * better build script
     * improved readme
