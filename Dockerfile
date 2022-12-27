@@ -4,13 +4,13 @@ ENV OPAMYES=true
 
 RUN apk --no-cache add opam m4 git make \
                        libc-dev ocaml-compiler-libs ocaml-ocamldoc \
+                       sqlite fuse-dev curl-dev gmp-dev sqlite-dev zlib-dev \
 \
 && opam init  --disable-sandboxing  -y \
 \
 && opam update \
-&& opam install -y depext \
-&& opam depext -y google-drive-ocamlfuse \
-&& opam install -y google-drive-ocamlfuse
+&& opam install -y --no-depexts ocamlfuse \
+&& opam install -y --no-depexts google-drive-ocamlfuse
 
 FROM alpine
 
