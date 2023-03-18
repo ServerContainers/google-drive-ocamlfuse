@@ -1,4 +1,4 @@
-# google-drive-ocamlfuse - (servercontainers/google-drive-ocamlfuse) on alpine [x86 + arm]
+# google-drive-ocamlfuse - (build yourself container) on alpine
 
 I've created this container to mount google drive shares on my host system, without the need of installing this ocaml stuff.
 
@@ -11,19 +11,36 @@ After that, just mount your volume mountpoint to the gdrive mountpoint inside th
 
 It's loosely based on https://github.com/Patricol/dockerfiles-public/tree/master/alpine/gdrive.
 
+_currently tested on: x86_64, arm64, arm_
+
+## IMPORTANT!
+
+In March 2023 - Docker informed me that they are going to remove my 
+organizations `servercontainers` and `desktopcontainers` unless 
+I'm upgrading to a pro plan.
+
+I'm not going to do that. It's more of a professionally done hobby then a
+professional job I'm earning money with.
+
+In order to avoid bad actors taking over my org. names and publishing potenial
+backdoored containers, I'd recommend to switch over clone my github repos and
+build the containers yourself.
 
 ## Versioning
+
+You can specify `DOCKER_REGISTRY` environment variable (for example `my.registry.tld`)
+and use the build script to build the main container and it's variants for _x86_64, arm64 and arm_
 
 You'll find all images tagged like `a3.15.0-g0.7.23` which means `a<alpine version>-g<google-drive-ocamlfuse version>`.
 This way you can pin your installation/configuration to a certian version. or easily roll back if you experience any problems
 (don't forget to open a issue in that case ;D).
 
-The `latest` version will be updated/released after I managed to test a new pinned version in my production environment.
-This way I can easily find and fix bugs without affecting any users. It will result in a way more stable container.
-
+To build a `latest` tag run `./build.sh release`
 
 ## Changelogs
 
+* 2023-03-18
+    * switched from docker hub to a build-yourself container
 * 2022-12-27
     * fixed broken build (opam depext etc.)
     * fixed url display problem in custom `xdg-open`
