@@ -1,8 +1,9 @@
 #!/bin/bash
 export IMG=$(docker build -q --pull --no-cache -t 'get-version' .)
 
+docker pull alpine -q >/dev/null 2>/dev/null
 export GDRIVE_VERSION=$(docker run --rm -t get-version | grep 'google-drive-ocamlfuse, version' | tr ' ' '\n' | tail -n1 | tr -d '\r')
-export ALPINE_VERSION=$(docker pull alpine >/dev/null 2>/dev/null; docker run --rm -ti alpine cat /etc/alpine-release | tail -n1 | tr -d '\r')
+export ALPINE_VERSION=$(docker run --rm -t alpine cat /etc/alpine-release | tail -n1 | tr -d '\r')
 [ -z "$ALPINE_VERSION" ] && exit 1
 
 export IMGTAG=$(echo "$1""a$ALPINE_VERSION-g$GDRIVE_VERSION")
