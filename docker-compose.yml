@@ -3,7 +3,7 @@ version: '3'
 services:
   gdrive:
     build: .
-    image: google-drive-ocamlfuse
+    image: ghcr.io/servercontainers/google-drive-ocamlfuse
     restart: always
     devices:
       - /dev/fuse

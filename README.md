@@ -1,4 +1,4 @@
-# google-drive-ocamlfuse - (build yourself container) on alpine
+# google-drive-ocamlfuse - (ghcr.io/servercontainers/google-drive-ocamlfuse) [x86 + arm] on alpine
 
 I've created this container to mount google drive shares on my host system, without the need of installing this ocaml stuff.
 
@@ -23,10 +23,9 @@ I'm not going to do that. It's more of a professionally done hobby then a
 professional job I'm earning money with.
 
 In order to avoid bad actors taking over my org. names and publishing potenial
-backdoored containers, I'd recommend to switch over clone my github repos and
-build the containers yourself.
+backdoored containers, I'd recommend to switch over to my new github registry: `ghcr.io/servercontainers`.
 
-## Versioning
+## Build & Versioning
 
 You can specify `DOCKER_REGISTRY` environment variable (for example `my.registry.tld`)
 and use the build script to build the main container and it's variants for _x86_64, arm64 and arm_
@@ -39,6 +38,9 @@ To build a `latest` tag run `./build.sh release`
 
 ## Changelogs
 
+* 2023-03-20
+    * github action to build container
+    * implemented ghcr.io as new registry
 * 2023-03-18
     * switched from docker hub to a build-yourself container
 * 2022-12-27
