@@ -9,8 +9,8 @@ RUN apk --no-cache add opam m4 git make \
 && opam init  --disable-sandboxing  -y \
 \
 && opam update \
-&& opam install -y ocamlfuse \
-&& opam install -y google-drive-ocamlfuse
+&& opam install -y --no-depexts ocamlfuse \
+&& opam install -y --no-depexts google-drive-ocamlfuse
 
 FROM alpine
 
